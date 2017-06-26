@@ -1,6 +1,6 @@
 # Supported tags and respective `Dockerfile` links
 
-- [`1.0.3` (*1.0.0/Dockerfile*)](https://github.com/gomoob/docker-sensu-server/blob/master/1.0.0/Dockerfile)
+- [`0.29.0-11` (*1.0.0/Dockerfile*)](https://github.com/gomoob/docker-sensu-server/blob/master/1.0.0/Dockerfile)
 
 # What is docker-sensu-server ?
 
@@ -10,6 +10,8 @@ one Docker container.
 
 # How to use this image.
 
+## With command line
+
 ```console
 $ docker run --name sensu-server -d -p 3000:3000 -p 4567:4567 -p 5671:5671 -p 15672:15672 gomoob/php-websocket-server:1.1.0
 ```
@@ -17,6 +19,33 @@ $ docker run --name sensu-server -d -p 3000:3000 -p 4567:4567 -p 5671:5671 -p 15
 *WARNING* : Please note that under Windows the server will be accessible at `http://192.168.99.100` in 
 this case.
 
+## With Docker compose
+
+
+## Using custom configuration
+
+The container has default configuration files which are stored inside the `/etc/sensu` and `/etc/rabbimq` directories
+inside the container.
+
+You can overwrite those configuration files by creating 2 folders on you host and mapping them using Docker volumes. We 
+advise you to create a hierarchy of files and folders by using one of the zip files we provide for each version of the 
+container.
+
+```
+/home/john.doe/etc
+  |
+  |- rabbitmq
+  \- sensu
+```
+
+Then simply update the files you want and start the container using Docker volume mappings on each of the 2 folders.
+
+```
+$ docker run --name sensu-server -d \
+    -v /home/john.doe/etc/sensu:/etc/sensu \
+    -v /home/john.doe/etc/rabbitmq:/etc/rabbitmq \
+    -p 3000:3000 -p 4567:4567 -p 5671:5671 -p 15672:15672 gomoob/php-websocket-server:1.1.0
+```
 
 ## About Gomoob
 
