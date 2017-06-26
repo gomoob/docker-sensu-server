@@ -1,0 +1,27 @@
+{
+  "rabbitmq": {
+    "host": "127.0.0.1",
+    "port": 5671,
+    "vhost": "/sensu",
+    "user": "sensu",
+    "password": "password",
+    "heartbeat": 30,
+    "prefetch": 50,
+    "ssl": {
+      "cert_chain_file": "/etc/sensu/ssl/cert.pem",
+      "private_key_file": "/etc/sensu/ssl/key.pem"
+    }
+  },
+  "redis": {
+    "host": "127.0.0.1",
+    "port": 6379
+  },
+  "api": {
+    "host": "127.0.0.1",
+    "port": 4567
+  },
+  "transport": {
+    "name": "rabbitmq",
+    "reconnect_on_error": true
+  }
+}
