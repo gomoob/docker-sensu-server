@@ -4,8 +4,8 @@
 
 # What is docker-sensu-server ?
 
-[docker-sensu-server](https://github.com/gomoob/docker-sensu-server "docker-sensu-server") is an all-in-one Sensu 
-server. It contains a preconfigured Sensu server, Sensu API, a RabbitMQ broker and the Uchiwa web console inside only 
+[docker-sensu-server](https://github.com/gomoob/docker-sensu-server "docker-sensu-server") is an all-in-one Sensu
+server. It contains a preconfigured Sensu server, Sensu API, a RabbitMQ broker and the Uchiwa web console inside only
 one Docker container.
 
 # How to use this image.
@@ -47,7 +47,25 @@ $ docker run --name sensu-server -d \
     -p 3000:3000 -p 4567:4567 -p 5671:5671 -p 15672:15672 gomoob/php-websocket-server:1.1.0
 ```
 
-## About Gomoob
+# Production settings
+
+The configuration files we provide are in most cases well configured to start quickly. But if need to deploy a Sensu 
+server and lot of clients we found that custom settings could be necessary to support the load.
+
+This chapter details the most important settings to configure for production environments with several hundreds Sensu 
+clients.
+
+## RabbitMQ
+
+For RabbitMQ event if your configuration is not perfect the least you can do is to confire Memory and Disk Alarms
+correctly to be alerted when a problem is encountered. 
+
+This is very important because if your RabbitMQ server stops to work and one of your Sensu client crashes then you'll 
+not be alerted of this crash.
+
+The documentation about RabbitMQ alarms is available at the following address https://www.rabbitmq.com/alarms.html.
+
+# About Gomoob
 
 At [Gomoob](https://www.gomoob.com) we build high quality software with awesome Open Source frameworks everyday. Would 
 you like to start your next project with us? That's great! Give us a call or send us an email and we will get back to 
